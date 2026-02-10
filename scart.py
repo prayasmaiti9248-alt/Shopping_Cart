@@ -44,14 +44,18 @@ def remove_item():
         else:
             print("!!Item not found!!") 
 def update_quantity():
-        name=input("Enter name of the itame to update the quantity: ").strip().lower() 
-        current_quantity=cart[name]
-        max_all=cart[name]+items[name]["stock"]
-        new_quantity=get_quantity(max_all)
-        difference=new_quantity-current_quantity
-        cart[name]=new_quantity
-        items[name]["stock"]-=difference
-        print("Quantity Updated")
+        name=input("Enter name of the itame to update the quantity: ").strip().lower()
+        if name not in cart:
+            print("!!!Item not found in cart!!!") 
+            return
+        else:
+         current_quantity=cart[name]
+         max_all=cart[name]+items[name]["stock"]
+         new_quantity=get_quantity(max_all)
+         difference=new_quantity-current_quantity
+         cart[name]=new_quantity
+         items[name]["stock"]-=difference
+         print("Quantity Updated")
 def view_cart():
         if not cart:
             print("!!!!Cart is Empty!!!!")
